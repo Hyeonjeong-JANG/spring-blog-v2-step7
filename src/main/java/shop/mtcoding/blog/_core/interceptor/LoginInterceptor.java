@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import shop.mtcoding.blog._core.errors.exception.Exception401;
 import shop.mtcoding.blog.user.User;
 
+// /api/** 인증 필요 주소
 public class LoginInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
