@@ -20,8 +20,8 @@ public class BoardController {
     // SSR은 DTO를 굳이 만들필요가 없다. 필요한 데이터만 랜더링해서 클라이언트에게 전달할것이니까!!
     @GetMapping("/")
     public ResponseEntity<?> main() {
-        List<Board> boardList = boardService.글목록조회();
-        return ResponseEntity.ok(new ApiUtil<>(boardList));
+        List<BoardResponse.MainDTO> respDTO = boardService.글목록조회();
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @GetMapping("/api/board/{id}")

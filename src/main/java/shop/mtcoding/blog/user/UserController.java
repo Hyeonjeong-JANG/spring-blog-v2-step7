@@ -20,10 +20,10 @@ public class UserController {
     private final UserService userService;
     private final HttpSession session;
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<?> userinfo(@PathVariable Integer id) {
-        User user = userService.회원조회(id);
-        return ResponseEntity.ok(new ApiUtil<>(user));
+        UserResponse.DTO respDTO = userService.회원조회(id);
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @PutMapping("/api/users/{id}") // api가 붙으면 모두 json으로 받겠다는 뜻

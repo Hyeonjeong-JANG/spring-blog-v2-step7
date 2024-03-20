@@ -25,10 +25,10 @@ public class UserService {
         return user;
     } // 더티체킹
 
-    public User 회원조회(int id){
+    public UserResponse.DTO 회원조회(int id){
         User user = userJPARepository.findById(id)
                 .orElseThrow(() -> new Exception404("회원정보를 찾을 수 없습니다"));
-        return user;
+        return new UserResponse.DTO(user); // 엔티티의 생명이 종료됨 이제부터 디티오로 날릴거니까
     }
     
     public User 로그인(UserRequest.LoginDTO reqDTO){

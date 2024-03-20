@@ -59,9 +59,11 @@ public class BoardService {
         boardJPARepository.deleteById(boardId);
     }
 
-    public List<Board> 글목록조회() {
+    public List<BoardResponse.MainDTO> 글목록조회() {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        return boardJPARepository.findAll(sort);
+        List<Board> boardList = boardJPARepository.findAll(sort);
+//        return boardList.stream().map(BoardResponse.MainDTO::new).toList();
+        return boardList.stream().map(board -> new BoardResponse.MainDTO(board)).toList();
     }
 
     // board, isOwner
