@@ -7,7 +7,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import shop.mtcoding.blog._core.errors.exception.Exception400;
 import shop.mtcoding.blog._core.errors.exception.Exception401;
 
@@ -19,10 +21,10 @@ public class UserController {
     private final UserService userService;
     private final HttpSession session;
 
-    // TODO: 회원정보조회 API 필요
+    // TODO: 회원정보조회 API 필요 -> @GetMapping("/api/users/{id}")
 
-    @PostMapping("/user/update")
-    public String update(UserRequest.UpdateDTO reqDTO) {
+    @PutMapping("/api/users/{id}") // api가 붙으면 모두 json으로 받겠다는 뜻
+    public String update(@PathVariable Integer id, UserRequest.UpdateDTO reqDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User newSessionUser = userService.회원수정(sessionUser.getId(), reqDTO);
         session.setAttribute("sessionUser", newSessionUser);
