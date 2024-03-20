@@ -38,7 +38,7 @@ public class UserService {
     }
 
     @Transactional
-    public void 회원가입(UserRequest.JoinDTO reqDTO){ // ssar
+    public User 회원가입(UserRequest.JoinDTO reqDTO){ // ssar
         // 1. 유저네임 중복검사 (서비스 체크) - DB연결이 필요한 것은 Controller에서 작성할 수 없다.
         Optional<User> userOP = userJPARepository.findByUsername(reqDTO.getUsername());
 
@@ -47,6 +47,6 @@ public class UserService {
         }
 
         // 2. 회원가입
-        userJPARepository.save(reqDTO.toEntity());
+        return userJPARepository.save(reqDTO.toEntity());
     }
 }
