@@ -29,13 +29,13 @@ public class MyExceptionHandler {
     }
 
     @ExceptionHandler(Exception403.class)
-    public ResponseEntity<?> ex403(RuntimeException e) {
+    public ResponseEntity<?> ex403(Exception403 e) {
         ApiUtil<?> apiUtil = new ApiUtil<>(403, e.getMessage());
         return new ResponseEntity<>(apiUtil, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(Exception404.class)
-    public ResponseEntity<?> ex404(RuntimeException e) {
+    public ResponseEntity<?> ex404(Exception404 e) {
         ApiUtil<?> apiUtil = new ApiUtil<>(404, e.getMessage());
         return new ResponseEntity<>(apiUtil, HttpStatus.NOT_FOUND);
     }
