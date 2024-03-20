@@ -19,13 +19,7 @@ public class UserController {
     private final UserService userService;
     private final HttpSession session;
 
-    @GetMapping("/user/update-form")
-    public String updateForm(HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        User user = userService.회원조회(sessionUser.getId());
-        request.setAttribute("user", user);
-        return "user/update-form";
-    }
+    // TODO: 회원정보조회 API 필요
 
     @PostMapping("/user/update")
     public String update(UserRequest.UpdateDTO reqDTO) {
@@ -46,16 +40,6 @@ public class UserController {
         User sessionUser = userService.로그인(reqDTO);
         session.setAttribute("sessionUser", sessionUser);
         return "redirect:/";
-    }
-
-    @GetMapping("/join-form")
-    public String joinForm() {
-        return "user/join-form";
-    }
-
-    @GetMapping("/login-form")
-    public String loginForm() {
-        return "user/login-form";
     }
 
     @GetMapping("/logout")
